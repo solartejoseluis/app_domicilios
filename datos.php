@@ -4,7 +4,25 @@ require "pdo.php";
 
 switch ($_GET['accion']) {
 case 'listar':
-    $sql = "SELECT codigo,descripcion,precio,tipo FROM articulos";
+    $sql = "SELECT 
+        clientes.cliente_nombre,
+        clientes.cliente_apellido,
+        clientes.cliente_telefono1,
+        domicilios.domi_dir_elegida,
+        domicilios.domi_barrio_elegido,
+        domicilios.domi_observacion,
+        domicilios.domi_factura,
+        domicilios.domi_valor,
+        domicilios.domi_hora_reg,
+        domicilios.domi_hora_asig,
+        domicilios.domi_hora_entrega,
+        domicilios.domi_hora_llegada,
+        transportadores.trans_nombre
+        FROM domicilios
+        INNER JOIN clientes
+        ON domicilios.cliente_id=clientes.cliente_id
+        INNER JOIN transportadores
+        ON domicilios.trans_id=transportadores.trans_id";
     $stmt = $pdo -> prepare($sql);
     $stmt -> execute();
     $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);

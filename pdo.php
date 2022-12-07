@@ -1,7 +1,7 @@
 <?php
 //creado el  2022-11-16
 // definición de variables
-$dsn="mysql:host=localhost;port=3306;dbname=crud_01";
+$dsn="mysql:host=localhost;port=3306;dbname=app_domicilios";
 $username="kiron";
 $password="123456";
 $options= array(
